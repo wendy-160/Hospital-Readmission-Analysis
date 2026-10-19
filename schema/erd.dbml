@@ -1,0 +1,88 @@
+
+Table age_lookup {
+  age_group varchar(10) [primary key]
+  sort_order tinyint [not null]
+}
+
+Table admission_type_lookup {
+  admission_type_id TINYINT [primary key]
+  description varchar(50) [not null]
+}
+ 
+Table discharge_disposition_lookup {
+  discharge_disposition_id tinyint [primary key]
+  description varchar(100) [not null]
+  is_terminal_discharge boolean [not null, default: false]
+}
+
+Table admission_source_lookup {
+  admission_source_id tinyint [primary key]
+  description varchar(100) [not null]
+}
+
+Table diagnosis_category_lookup {
+  diagnosis_category varchar(30) [primary key]
+  icd9_range_description varchar(100)
+}
+
+Table patients {
+  patient_nbr int [primary key]
+  race varchar(20) [not null, default: 'Unknown']
+  gender varchar(10) [not null]
+}
+
+Table encounters {
+  encounter_id int [primary key]
+  patient_nbr int [not null]
+  admission_type_id tinyint
+  discharge_disposition_id tinyint
+  admission_source_id tinyint
+  age_group varchar(10)
+  medical_specialty varchar(60) [not null, default: 'Unknown']
+  payer_code varchar(20) [not null, default: 'Unknown']
+  time_in_hospital tinyint [not null]
+  num_lab_procedures smallint [not null]
+  num_procedures tinyint [not null]
+  num_medications smallint [not null]
+  number_outpatient smallint [not null]
+  number_emergency smallint [not null]
+  number_inpatient smallint [not null]
+  number_diagnoses tinyint [not null]
+  max_glu_serum varchar(10) [not null, default: 'None']
+  A1Cresult varchar(10) [not null, default: 'None']
+  change_flag varchar(10) [not null]
+  diabetes_med varchar(5) [not null]
+  readmitted varchar(5) [not null]
+}
+
+Table diagnoses {
+  diagnosis_id int [primary key, increment]
+  encounter_id int [not null]
+  diagnosis_position tinyint [not null]
+  icd9_code varchar(10) [not null, default: 'Unknown']
+  diagnosis_category varchar(30)
+}
+
+Table medications {
+  medication_id int [primary key, increment]
+  encounter_id int [not null]
+  drug_name varchar(30) [not null]
+  status varchar(10) [not null]
+}
+
+
+Ref: "encounters"."patient_nbr" ?> "patients"."patient_nbr"
+
+Ref: "encounters"."admission_type_id" ?>? "admission_type_lookup"."admission_type_id"
+
+Ref: "encounters"."discharge_disposition_id" ?>? "discharge_disposition_lookup"."discharge_disposition_id"
+
+Ref: "encounters"."admission_source_id" ?>? "admission_source_lookup"."admission_source_id"
+
+Ref: "encounters"."age_group" ?>? "age_lookup"."age_group"
+
+Ref: "diagnoses"."encounter_id" ?> "encounters"."encounter_id"
+
+Ref: "diagnoses"."diagnosis_category" ?>? "diagnosis_category_lookup"."diagnosis_category"
+
+Ref: "medications"."encounter_id" ?> "encounters"."encounter_id"
