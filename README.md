@@ -2,6 +2,8 @@
 
 A SQL and BI-first analysis of 99,340 diabetic inpatient encounters across 130 US hospitals (1999-2008): a Python ETL, a normalized MySQL schema, a layer of reporting views, and a four-page Power BI dashboard. 
 
+![Risk and penalty proxy page of the Power BI dashboard](docs/images/page3_risk_penalty.png)
+
 ## Headline results
 | Finding | Result |
 | --- | --- |
@@ -118,7 +120,7 @@ The Power BI report connects directly to the MySQL views.
 <table>
   <tr>
     <td align="center"><img src="docs/images/page1_overview.png" alt="Overview page of the Power BI dashboard"></td>
-    <td align="center"><img src="docs/images/page2_segmentaion.png" alt="Segmentation page of the Power BI dashboard"></td>
+    <td align="center"><img src="docs/images/page2_segmentation.png" alt="Segmentation page of the Power BI dashboard"></td>
   </tr>
   <tr>
     <td align="center"><img src="docs/images/page3_risk_penalty.png" alt="Risk and penalty proxy page of the Power BI dashboard"></td>
