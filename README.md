@@ -49,8 +49,10 @@ data/
   raw/          diabetic_data.csv
   processed/    patients.csv, encounters.csv, diagnoses.csv, medications.csv
 docs/
+  Hospital Readmission Analysis - Findings & Methodology.pdf
   data_profiling_and_cleaning_decisions.md
   icd9_category_mapping.md
+  images/      dashboard screenshots used in this README
 etl/
   01_transform.py
   02_load_mysql.py
@@ -112,6 +114,17 @@ The Power BI report connects directly to the MySQL views.
 | Segmentation | Four slicers, a fixed baseline vs. filtered comparison, discharge and diagnosis rates, age x diagnosis heatmap |
 | Risk & Penalty Proxy | The 2.37x risk tier spread and the penalty proxy ratio by diagnosis category | 
 | Medication & Utilization | Prior-year utilization, medication changes, and the active-medication distribution |
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/images/page1_overview.png" alt="Overview page of the Power BI dashboard"></td>
+    <td align="center"><img src="docs/images/page2_segmentaion.png" alt="Segmentation page of the Power BI dashboard"></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/images/page3_risk_penalty.png" alt="Risk and penalty proxy page of the Power BI dashboard"></td>
+    <td align="center"><img src="docs/images/page4_medication_utilization.png" alt="Risk and penalty proxy page of the Power BI dashboard"></td>
+  </tr>
+</table>
 
 ## Limitations
 - The dataset has no admission date or timestamp. `encounte_id` is used as an ordering proxy in the window-function queries.
