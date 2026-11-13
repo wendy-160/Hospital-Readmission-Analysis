@@ -37,7 +37,7 @@ Most public analyses of this dataset train a machine learning classifier. This p
 diabtic_data.csv -> Python ETL -> MySQL -> Views -> SQL reporting -> Power BI
 
 | Stage | What it does | Output |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | `etl/01_transform.py` | Cleans and reshapes the raw CSV | 4 clean CSVs: 71,515 patients, 101,763 encounters, 305,289 diagnoses, 120,050 medications |
 | `etl/02_load_mysql.py` | Loads the CSVs into MySQL in foreign-key-safe order, in batches of 5,00 | Populated `hospital_readmission` database |
 | `views/` | Reporting views, including risk tier and penalty proxy | 6 views |
